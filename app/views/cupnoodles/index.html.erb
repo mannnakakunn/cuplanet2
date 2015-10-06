@@ -1,0 +1,71 @@
+ <!-- Navbar goes here -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Cuplanet</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- Page Layout here -->
+    <div class="row">
+
+      <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
+        <!-- Grey navigation panel
+
+              This content will be:
+          3-columns-wide on large screens,
+          4-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+
+      </div>
+
+      <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
+
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+
+      </div>
+
+    </div>
+
+
+<h1></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Company</th>
+      <th>Comment</th>
+      <th>Rank</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cupnoodles.each do |cupnoodle| %>
+      <tr>
+        <td><%= cupnoodle.name %></td>
+        <td><%= cupnoodle.company %></td>
+        <td><%= cupnoodle.comment %></td>
+        <td><%= cupnoodle.rank %></td>
+        <td><%= link_to 'Show', cupnoodle %></td>
+        <td><%= link_to 'Edit', edit_cupnoodle_path(cupnoodle) %></td>
+        <td><%= link_to 'Destroy', cupnoodle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cupnoodle', new_cupnoodle_path %>
