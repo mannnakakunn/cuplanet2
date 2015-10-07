@@ -1,16 +1,27 @@
 class CupnoodlesController < ApplicationController
   before_action :set_cupnoodle, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_direction
+  
   # GET /cupnoodles
   # GET /cupnoodles.json
   def index
-    @cupnoodles = Cupnoodle.all
+    @cupnoodles = Cupnoodle.order(sort_column + ' ' + sort_direction)
   end
+
+  def sort_direction
+  %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end
+
+  def sort_column
+  Cupnoodle.column_names.include?(params[:sort]) ? params[:sort] : "rank"
+  end
+
 
   # GET /cupnoodles/1
   # GET /cupnoodles/1.json
   def show
   end
+
 
   # GET /cupnoodles/new
   def new
@@ -71,4 +82,13 @@ class CupnoodlesController < ApplicationController
     def cupnoodle_params
       params.require(:cupnoodle).permit(:name, :company, :comment, :rank)
     end
+
+    def sort_column
+      params[:sort] || "rank"
+    end
+  
+    def sort_direction
+      params[:direction] || "desc"
+    end
+
 end

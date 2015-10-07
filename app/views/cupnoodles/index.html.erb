@@ -21,22 +21,32 @@
           4-columns-wide on medium screens,
           12-columns-wide on small screens  -->
 
+<form action="#">
+    <p>
+      <input name="group1" type="radio" id="test1" />
+      <label for="test1">売上ランキング</label>
+    </p>
+    <p>
+      <input name="group1" type="radio" id="test2" />
+      <label for="test2">話題ランキング</label>
+    </p>
+    <p>
+      <input class="with-gap" name="group1" type="radio" id="test3"  />
+      <label for="test3">新着ランキング</label>
+    </p>
+</form>
+
+         <%= link_to 'New Cupnoodle', new_cupnoodle_path %>
       </div>
 
       <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
         <!-- Teal page content
 
+
               This content will be:
           9-columns-wide on large screens,
           8-columns-wide on medium screens,
           12-columns-wide on small screens  -->
-
-      </div>
-
-    </div>
-
-
-<h1></h1>
 
 <table>
   <thead>
@@ -44,7 +54,7 @@
       <th>Name</th>
       <th>Company</th>
       <th>Comment</th>
-      <th>Rank</th>
+      <th><%= sortable "Rank", "rank" %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -52,6 +62,8 @@
   </thead>
 
   <tbody>
+
+    <% @cupnoodles.order("rank DESK") %>
     <% @cupnoodles.each do |cupnoodle| %>
       <tr>
         <td><%= cupnoodle.name %></td>
@@ -66,6 +78,14 @@
   </tbody>
 </table>
 
-<br>
+<br>          
 
-<%= link_to 'New Cupnoodle', new_cupnoodle_path %>
+      </div>
+
+    </div>
+
+
+<h1></h1>
+
+
+
